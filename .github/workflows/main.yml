@@ -6,7 +6,6 @@ name: PythonAppAzureDeployment
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
-        if: github.ref == 'refs/heads/main'
         steps:
         # checkout the repo
         - name: 'Checkout GitHub Action'
