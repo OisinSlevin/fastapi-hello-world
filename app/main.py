@@ -9,4 +9,4 @@ app = FastAPI(
 
 @app.get("/")
 def hello_world():
-    return {"Hello": "OisinS"}
+    return {"Hello": "OisinSl"}
