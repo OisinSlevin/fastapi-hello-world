@@ -1,5 +1,5 @@
 from fastapi import FastAPI 
-from kafka import producer
+
 
 app = FastAPI(
     title="FastAPI - Hello World",
