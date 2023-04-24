@@ -6,16 +6,17 @@ name: PythonAppAzureDeployment
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/main'
         steps:
         # checkout the repo
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@main
-          
+
         - name: 'Login via Azure CLI'
           uses: azure/login@v1
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
+
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
@@ -25,7 +26,7 @@ jobs:
         - run: |
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
-        
+
         - name: 'Deploy to Azure Container Instances'
           uses: 'azure/aci-deploy@v1'
           with:
